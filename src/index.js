@@ -1,11 +1,11 @@
 import ReactDOM from 'react-dom';
 
 import './assets/css/reset.css';
-import './assets/css/style.css';
-import Layout from './componentes/layout';
+
+import App from './componentes/app';
 
 function index() {
-    return(<Layout/>)
+    return(<App/>)
 }
 
 ReactDOM.render(index(), document.querySelector('.root'));

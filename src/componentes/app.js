@@ -2,12 +2,14 @@ import styled from "styled-components"
 
 import Footer from "./footer"
 import Header from "./header"
+import Pergunta from "./perguntas"
 
-export default function Layout() {
+export default function App() {
     return (
         <Container>
             <Header />
-            <Footer/>
+            <Pergunta />
+            <Footer />
         </Container>
     )
 };

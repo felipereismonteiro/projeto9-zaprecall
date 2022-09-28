@@ -42,6 +42,7 @@ const ContainerBotoes = styled.div`
 `
 const Botao = styled.button`
     width: 90px;
+    height: 30px;
     font-family: 'Recursive';
     font-style: normal;
     font-weight: 400;
