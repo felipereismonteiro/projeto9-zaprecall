@@ -2,13 +2,13 @@ import styled from "styled-components"
 
 import Footer from "./footer"
 import Header from "./header"
-import Pergunta from "./perguntas"
+import Perguntas from "./perguntas"
 
 export default function App() {
     return (
         <Container>
             <Header />
-            <Pergunta />
+            <Perguntas />
             <Footer />
         </Container>
     )
