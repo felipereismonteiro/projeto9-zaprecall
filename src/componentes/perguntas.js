@@ -17,7 +17,7 @@ export default function Perguntas({escolha}) {
         </>
     )
 
-    function Pergunta({ index, pergunta, resposta, escolha }) {
+    function Pergunta({ index, pergunta, resposta }) {
         const [variavelPergunta, setVariavelPergunta] = useState("PerguntaFechada")
 
         function verificarImagem() {
@@ -38,19 +38,6 @@ export default function Perguntas({escolha}) {
         }
 
         function verificaCard(card, index) { 
-            if(card === "PerguntaAbertaResposta") {
-                switch(escolha) {
-                    case "":
-                        return setVariavelPergunta("PerguntaAbertaResposta") 
-                    case "Não lembrei":
-                        return setVariavelPergunta("PerguntaFinalizadaErro")
-                    case "Quase lembrei":
-                        return setVariavelPergunta("PerguntaFinalizadaQuase")
-                    case "Zap!":
-                        return setVariavelPergunta("PerguntaFinalizadaAcerto")
-                }
-            }
-
             switch(card) {
                 case "PerguntaFechada":
                     return setVariavelPergunta("PerguntaAbertaPergunta");
@@ -58,6 +45,8 @@ export default function Perguntas({escolha}) {
                     return setVariavelPergunta("PerguntaAbertaResposta")
                 case "PerguntaAbertaResposta":
                     return setVariavelPergunta("PerguntaFinalizadaAcerto")
+                case "PerguntaAbertaResposta":
+                    return setVariavelPergunta("PerguntaFinalizadaErro")
                 default:
                     return `Pergunta ${index + 1}`
             }   

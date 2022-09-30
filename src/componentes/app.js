@@ -15,9 +15,7 @@ export default function App() {
                 contadorRespondidas={contadorRespondidas} 
                 setContadorRespondidas={setContadorRespondidas} />
 
-            <Footer 
-                resposta={resposta} 
-                setResposta={setResposta}/>
+            <Footer/>
 
         </Container>
     )
