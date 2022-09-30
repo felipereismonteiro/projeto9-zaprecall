@@ -9,58 +9,84 @@ import iconeQuase from "../assets/img/icone_quase.png"
 
 import { decks } from "../arrays/decks"
 
-export default function Perguntas() {
+export default function Perguntas({escolha}) {
 
     return (
         <>
-            {decks.map((e, i) => <Pergunta index={i} />)}
+            {decks.map((e, i) => <Pergunta key={i} index={i} pergunta={e.P} resposta={e.R} escolha={escolha} />)}
         </>
     )
 
-    function Pergunta({ index }) {
-        return (
-            <>
-                <TagPergunta className="PerguntaFechada">
-                    <p>Pergunta {index + 1}</p>
-                    <img src={perguntaLogo}/>
-                </TagPergunta>
-            </>
-        )
-    }
+    function Pergunta({ index, pergunta, resposta, escolha }) {
+        const [variavelPergunta, setVariavelPergunta] = useState("PerguntaFechada")
 
-    function PerguntaAbertaComponente() {
-        return (
-            <PerguntaAberta>
-                <h1>O que e jsx???</h1>
-                <img src={setaVirar} />
-            </PerguntaAberta>
-        )
-    }
+        function verificarImagem() {
+            switch(variavelPergunta) {
+                case "PerguntaFechada":
+                    return perguntaLogo;
+                case "PerguntaAbertaPergunta":
+                    return setaVirar
+                case "PerguntaAbertaResposta":
+                    return setaVirar
+                case "PerguntaFinalizadaErro":
+                    return iconeErro
+                case "PerguntaFinalizadaAcerto":
+                    return iconeCerto
+                default:
+                    return iconeQuase
+            }
+        }
 
-    function PerguntaFinalizadaErroComponente() {
-        return (
-            <PerguntaFinalizadaErro>
-                <p>Pergunta 1</p>
-                <img src={iconeErro} />
-            </PerguntaFinalizadaErro>
-        )
-    }
+        function verificaCard(card, index) { 
+            if(card === "PerguntaAbertaResposta") {
+                switch(escolha) {
+                    case "":
+                        return setVariavelPergunta("PerguntaAbertaResposta") 
+                    case "Não lembrei":
+                        return setVariavelPergunta("PerguntaFinalizadaErro")
+                    case "Quase lembrei":
+                        return setVariavelPergunta("PerguntaFinalizadaQuase")
+                    case "Zap!":
+                        return setVariavelPergunta("PerguntaFinalizadaAcerto")
+                }
+            }
 
-    function PerguntaFinalizadaAcertoComponente() {
-        return (
-            <PerguntaFinalizadaAcerto>
-                <p>Pergunta 1</p>
-                <img src={iconeCerto} />
-            </PerguntaFinalizadaAcerto>
-        )
-    }
+            switch(card) {
+                case "PerguntaFechada":
+                    return setVariavelPergunta("PerguntaAbertaPergunta");
+                case "PerguntaAbertaPergunta":
+                    return setVariavelPergunta("PerguntaAbertaResposta")
+                case "PerguntaAbertaResposta":
+                    return setVariavelPergunta("PerguntaFinalizadaAcerto")
+                default:
+                    return `Pergunta ${index + 1}`
+            }   
+        }
 
-    function PerguntaFinalizadaQuaseComponente() {
+        function verificaTexto() {
+            switch(variavelPergunta) {
+                case "PerguntaFechada":
+                    return `Pergunta ${index + 1}`;
+                case "PerguntaAbertaPergunta":
+                    return pergunta;
+                case "PerguntaAbertaResposta":
+                    return resposta;
+                case "PerguntaFinalizadaErro":
+                    return `Pergunta ${index + 1}`;
+                case "PerguntaFinalizadaAcerto":
+                    return `Pergunta ${index + 1}`;
+                default:
+                    return `Pergunta ${index + 1}`;
+            }
+        }
+        
         return (
-            <PerguntaFinalizadaQuase>
-                <p>Pergunta 1</p>
-                <img src={iconeQuase} />
-            </PerguntaFinalizadaQuase>
+            <TagPergunta className={variavelPergunta}>
+                <p>{verificaTexto()}</p>
+                <img src={verificarImagem()} 
+                alt={index}
+                onClick={() => verificaCard(variavelPergunta, index, escolha)}/>
+            </TagPergunta>
         )
     }
 };
@@ -86,7 +112,35 @@ const TagPergunta = styled.div`
             color: #333333;
         }
     }
-    &&.PerguntaAberta {
+    &&.PerguntaAbertaPergunta {
+        width: 300px;
+        margin: 12px;
+        padding: 15px;
+        min-height: 100px;
+        background: #FFFFD5;
+        box-shadow: 0px 4px 5px rgba(0yellow, 0, 0, 0.15);
+        border-radius: 5px;
+        font-family: 'Recursive';
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;
+        color: #333333;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        && img {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+        && h1 {
+            font-size: 25px;
+            font-weight: bold;
+        }
+    }
+
+    &&.PerguntaAbertaResposta {
         width: 300px;
         margin: 12px;
         padding: 15px;

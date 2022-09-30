@@ -1,19 +1,30 @@
 import styled from "styled-components"
+import {decks} from "../arrays/decks"
 
-export default function Footer() {
+export default function Footer({resposta ,setResposta}) {
+
+    function verificaResposta(escolha) {   
+        if(resposta === "") {
+            setResposta(escolha)
+        } else {
+            return false
+        }
+    }
+
     return (
         <DivFooter>
             <ContainerBotoes>
-                <Botao>
+                <Botao onClick={() => verificaResposta("Não lembrei")}>
                     <h1>Não lembrei</h1>
                 </Botao>
-                <Botao>
+                <Botao onClick={() => verificaResposta("Quase lembrei")}>
                     <h1>Quase lembrei</h1>
                 </Botao>
-                <Botao>
+                <Botao onClick={() => verificaResposta("Zap!")}>
                     <h1>Zap!</h1>
                 </Botao>
             </ContainerBotoes>
+            <ContadorTexto>{`0/${decks.length} Concluídos`}</ContadorTexto>
         </DivFooter>
     )
 };
@@ -42,9 +53,9 @@ const ContainerBotoes = styled.div`
 `
 const Botao = styled.button`
     width: 90px;
-    font-family: 'Recursive';
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
-    font-weight: 400;
+    font-weight: bold;
     font-size: 15px;
     line-height: 14px;
     display: flex;
@@ -66,4 +77,8 @@ const Botao = styled.button`
         background-color: #2FBE34;  
     }
 `
-
+const ContadorTexto = styled.h1`
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+`   

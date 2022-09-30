@@ -1,15 +1,27 @@
 import styled from "styled-components"
+import {useState} from "react"
 
 import Footer from "./footer"
 import Header from "./header"
 import Perguntas from "./perguntas"
 
 export default function App() {
+    const [contadorRespondidas, setContadorRespondidas] = useState()
+    const [resposta, setResposta] = useState("")
+    
     return (
         <Container>
             <Header />
-            <Perguntas />
-            <Footer />
+            <Perguntas 
+                escolha={resposta} 
+                setResposta={setResposta} 
+                contadorRespondidas={contadorRespondidas} 
+                setContadorRespondidas={setContadorRespondidas} />
+
+            <Footer 
+                resposta={resposta} 
+                setResposta={setResposta}/>
+
         </Container>
     )
 };
