@@ -7,14 +7,11 @@ import Perguntas from "./perguntas"
 
 export default function App() {
     const [contadorRespondidas, setContadorRespondidas] = useState()
-    const [resposta, setResposta] = useState("")
     
     return (
         <Container>
             <Header />
             <Perguntas 
-                escolha={resposta} 
-                setResposta={setResposta} 
                 contadorRespondidas={contadorRespondidas} 
                 setContadorRespondidas={setContadorRespondidas} />
 
