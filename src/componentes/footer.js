@@ -1,11 +1,11 @@
 import styled from "styled-components"
-import {decks} from "../arrays/decks"
+import { decks } from "../arrays/decks"
 
-export default function Footer({resposta ,setResposta}) {
+export default function Footer({ escolhaResposta, setEscolhaResposta, perguntasConcluidas }) {
 
-    function verificaResposta(escolha) {   
-        if(resposta === "") {
-            setResposta(escolha)
+    function verificaResposta(escolha) {
+        if (escolhaResposta === "") {
+            setEscolhaResposta(escolha)
         } else {
             return false
         }
@@ -14,17 +14,17 @@ export default function Footer({resposta ,setResposta}) {
     return (
         <DivFooter>
             <ContainerBotoes>
-                <Botao onClick={() => verificaResposta("Não lembrei")}>
+                <Botao onClick={() => verificaResposta("Erro")}>
                     <h1>Não lembrei</h1>
                 </Botao>
-                <Botao onClick={() => verificaResposta("Quase lembrei")}>
+                <Botao onClick={() => verificaResposta("Quase")}>
                     <h1>Quase lembrei</h1>
                 </Botao>
-                <Botao onClick={() => verificaResposta("Zap!")}>
+                <Botao onClick={() => verificaResposta("Acerto")}>
                     <h1>Zap!</h1>
                 </Botao>
             </ContainerBotoes>
-            <ContadorTexto>{`0/${decks.length} Concluídos`}</ContadorTexto>
+            <ContadorTexto>{`${perguntasConcluidas}/${decks.length} Concluídos`}</ContadorTexto>
         </DivFooter>
     )
 };

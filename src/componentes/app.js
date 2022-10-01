@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import {useState} from "react"
 
-import Footer from "./footer"
+
 import Header from "./header"
 import Perguntas from "./perguntas"
 
@@ -14,9 +14,6 @@ export default function App() {
             <Perguntas 
                 contadorRespondidas={contadorRespondidas} 
                 setContadorRespondidas={setContadorRespondidas} />
-
-            <Footer/>
-
         </Container>
     )
 };
