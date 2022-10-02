@@ -1,7 +1,10 @@
 import styled from "styled-components"
 import { decks } from "../arrays/decks"
 
+
+
 export default function Footer({ escolhaResposta, setEscolhaResposta, perguntasConcluidas }) {
+    let variavel = ""
 
     function verificaResposta(escolha) {
         if (escolhaResposta === "") {
@@ -9,6 +12,10 @@ export default function Footer({ escolhaResposta, setEscolhaResposta, perguntasC
         } else {
             return false
         }
+    }
+
+    if(perguntasConcluidas === 8) {
+        variavel = "verde"
     }
 
     return (
@@ -24,7 +31,7 @@ export default function Footer({ escolhaResposta, setEscolhaResposta, perguntasC
                     <h1>Zap!</h1>
                 </Botao>
             </ContainerBotoes>
-            <ContadorTexto>{`${perguntasConcluidas}/${decks.length} Concluídos`}</ContadorTexto>
+            <ContadorTexto className={variavel}>{`${perguntasConcluidas}/${decks.length} Concluídos`}</ContadorTexto>
         </DivFooter>
     )
 };
@@ -52,6 +59,7 @@ const ContainerBotoes = styled.div`
     margin: 20px;
 `
 const Botao = styled.button`
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
     width: 90px;
     font-family: 'Roboto', sans-serif;
     font-style: normal;
@@ -67,6 +75,11 @@ const Botao = styled.button`
     border-radius: 5px;
     border: 1px solid blue;
     padding:5px;
+    border: none;
+    &&:active {
+	position:relative;
+	top:1px;
+    }
     &&:first-child {
         background-color: #FF3030;  
     }
@@ -81,4 +94,7 @@ const ContadorTexto = styled.h1`
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
+    &&.verde{
+        color: green;
+    }
 `   

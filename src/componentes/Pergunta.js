@@ -95,6 +95,7 @@ const TagPergunta = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    overflow-y: hidden;
     && p {
         font-family: 'Recursive';
         font-style: normal;

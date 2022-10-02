@@ -14,6 +14,7 @@ const Topo = styled.header`
     display: flex;
     align-items: center;
     margin: 40px 0 20px 0;
+    overflow-y: hidden;
 `
 const Img = styled.img`
     width: 52px;
