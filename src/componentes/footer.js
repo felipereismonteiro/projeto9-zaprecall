@@ -73,7 +73,6 @@ const Botao = styled.button`
     color: #FFFFFF;
     background: blue;
     border-radius: 5px;
-    border: 1px solid blue;
     padding:5px;
     border: none;
     &&:active {
